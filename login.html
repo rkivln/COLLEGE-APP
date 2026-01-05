@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Glassmorphism</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --accent-color: #7b2cbf; /* Matches the deep purple button in image */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Background image to match the mountain aesthetic */
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&https://www.freepik.com/free-ai-image/tree-branch-nature-background-blue-season-leaf-illustration-generated-by-ai_40970245.htm#fromView=keyword&page=3&position=7&uuid=a9dd50b2-6235-4c8c-807c-30f0b62c02c7&query=Wallpaper=1920&q=80");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .glass-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: white;
+            margin: 20px;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 35px;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px; /* Fully rounded as in image */
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        input:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #723147; /* Muted wine/purple from image */
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #8e3d59;
+            box-shadow: 0 0 20px rgba(114, 49, 71, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+        }
+
+        .divider {
+            margin: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .divider span {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.01);
+            padding: 0 15px;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            color: #333;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .fa-google { color: #DB4437; }
+        .fa-facebook-f { color: #4267B2; }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive handling */
+        @media (max-width: 400px) {
+            .glass-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-container">
+        <h2>Welcome</h2>
+        
+        <div class="input-group">
+            <input id="user" type="text" placeholder="Email">
+        </div>
+        
+        <div class="input-group">
+            <input id="pass" type="password" placeholder="Password">
+        </div>
+        
+        <button onclick="login()">Login</button>
+
+        <div class="footer-links">
+            <a href="#">Forgot Password?</a>
+            <a href="#">Sign Up</a>
+        </div>
+
+        <div class="divider">
+            <span>Or login with</span>
+        </div>
+
+        <div class="social-login">
+            <div class="social-icon"><i class="fab fa-google"></i></div>
+            <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
+        </div>
+    </div>
+
+    <script>
+        async function login(){
+            const user = document.getElementById('user');
+            const pass = document.getElementById('pass');
+            
+            if(!user.value || !pass.value) {
+                alert("Please fill in all fields");
+                return;
+            }
+
+            try {
+                const r = await fetch("http://localhost:5000/api/auth/login", {
+                    method: "POST",
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({user: user.value, pass: pass.value})
+                });
+                
+                const data = await r.json();
+                alert(data.message);
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Could not connect to the server.");
+            }
+        }
+    </script>
+</body>
+</html>
